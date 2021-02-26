@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -14,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 mViewPager;
     RecyclerView.Adapter mMyFragmentStateAdapter;
     final int NUM_ITEMS = 5;
+    //https://developer.android.com/training/animation/vp2-migration
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         }
         @NonNull
         @Override
-        public Fragment createFragment(int position) {
+        public MainFragment createFragment(int position) {
             //return a new instance of MainFragment
-            return MainFragment.newInstance(mViewPager);
+            return MainFragment.newInstance(mViewPager,position);
         }
         @Override
         public int getItemCount() {

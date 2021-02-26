@@ -18,9 +18,11 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class MainFragment extends Fragment{
     ViewPager2 viewPager2;
     Button mButton;
-    public static MainFragment newInstance(ViewPager2 mViewPager) {
+    int position;
+    public static MainFragment newInstance(ViewPager2 mViewPager, int position) {
         MainFragment fragment = new MainFragment();
         fragment.viewPager2 = mViewPager;
+        fragment.position = position;
         return fragment;
     }
 
@@ -41,14 +43,13 @@ public class MainFragment extends Fragment{
         //assign response to button onclick
         mButton = view.findViewById(R.id.button_pressme);
         //set text to the current fragment's position number
-        mButton.setText("Press Me "+viewPager2.getCurrentItem());
+        mButton.setText("Press Me "+position);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"toasty"+viewPager2.getCurrentItem()
-                        , Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"toasty"+position, Toast.LENGTH_LONG).show();
             }
         });
-        System.out.println("Testing: I created a new fragment"+viewPager2.getCurrentItem());
+        System.out.println("Testing: I created a new fragment"+position);
     }
 }
