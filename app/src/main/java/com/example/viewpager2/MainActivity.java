@@ -1,5 +1,6 @@
 package com.example.viewpager2;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 mViewPager;
     RecyclerView.Adapter mMyFragmentStateAdapter;
     final int NUM_ITEMS = 5;
+    static MediaPlayer mp;
     //https://developer.android.com/training/animation/vp2-migration
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         //set the adapter for the ViewPager
         mViewPager.setAdapter(mMyFragmentStateAdapter);
+        mViewPager.setPageTransformer(new CubeOutTransformer());
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.night);
     }
     public class MyFragmentStateAdapter extends FragmentStateAdapter{
 
